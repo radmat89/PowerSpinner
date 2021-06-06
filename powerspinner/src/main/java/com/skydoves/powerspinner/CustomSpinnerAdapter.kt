@@ -78,6 +78,16 @@ class CustomSpinnerAdapter(
     }
   }
 
+  override fun selectItemByValue(value: CharSequence): Boolean {
+    val index = spinnerItems.indexOfFirst { it.spinnerValue == value }
+    return if (index < 0) {
+      false
+    } else {
+      spinnerView.selectItemByIndex(index)
+      true
+    }
+  }
+
   class DefaultSpinnerViewHolder(private val binding: ItemDefaultPowerSpinnerLibraryBinding) :
     RecyclerView.ViewHolder(binding.root) {
 

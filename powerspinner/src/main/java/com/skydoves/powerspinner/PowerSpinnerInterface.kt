@@ -27,4 +27,5 @@ interface PowerSpinnerInterface<T> {
   fun getItems(): List<T>
   val selectedItem: T?
   fun selectItem(item: T): Boolean
+  fun selectItemByValue(value: CharSequence): Boolean
 }
