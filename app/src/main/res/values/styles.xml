@@ -13,6 +13,10 @@
 
   <style name="powerSpinnerDefaultItemStyle" parent="Widget.MaterialComponents.TextView">
     <item name="android:foreground">?attr/selectableItemBackground</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:maxEms">20</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:textSize">12sp</item>
   </style>
 
 </resources>
