@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+  <attr name="powerSpinnerDefaultItemStyle" />
+
   <declare-styleable name="PowerSpinnerView">
     <!-- Sets an arrow drawable. -->
     <attr name="spinner_arrow_drawable" format="reference" />

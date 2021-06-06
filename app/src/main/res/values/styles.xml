@@ -1,6 +1,6 @@
 <resources>
 
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
@@ -8,5 +8,11 @@
     <item name="android:colorBackground">@color/background</item>
     <item name="android:textColor">@color/white_93</item>
     <item name="android:textColorPrimary">@color/md_amber_700</item>
+    <item name="powerSpinnerDefaultItemStyle">@style/powerSpinnerDefaultItemStyle</item>
   </style>
+
+  <style name="powerSpinnerDefaultItemStyle" parent="Widget.MaterialComponents.TextView">
+    <item name="android:foreground">?attr/selectableItemBackground</item>
+  </style>
+
 </resources>

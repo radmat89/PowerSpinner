@@ -39,18 +39,18 @@ class CustomActivity : AppCompatActivity() {
       setSpinnerAdapter(IconSpinnerAdapter(this))
       setItems(
         arrayListOf(
-          IconSpinnerItem(iconRes = R.drawable.unitedstates, text = "USA"),
-          IconSpinnerItem(iconRes = R.drawable.unitedkingdom, text = "UK"),
-          IconSpinnerItem(iconRes = R.drawable.france, text = "France"),
-          IconSpinnerItem(icon = contextDrawable(R.drawable.canada), text = "Canada"),
-          IconSpinnerItem(icon = contextDrawable(R.drawable.southkorea), text = "South Korea"),
-          IconSpinnerItem(icon = contextDrawable(R.drawable.germany), text = "Germany"),
-          IconSpinnerItem(icon = contextDrawable(R.drawable.spain), text = "Spain"),
-          IconSpinnerItem(icon = contextDrawable(R.drawable.china), text = "China")
+          IconSpinnerItem(iconRes = R.drawable.unitedstates, spinnerText = "USA"),
+          IconSpinnerItem(iconRes = R.drawable.unitedkingdom, spinnerText = "UK"),
+          IconSpinnerItem(iconRes = R.drawable.france, spinnerText = "France"),
+          IconSpinnerItem(icon = contextDrawable(R.drawable.canada), spinnerText = "Canada"),
+          IconSpinnerItem(icon = contextDrawable(R.drawable.southkorea), spinnerText = "South Korea"),
+          IconSpinnerItem(icon = contextDrawable(R.drawable.germany), spinnerText = "Germany"),
+          IconSpinnerItem(icon = contextDrawable(R.drawable.spain), spinnerText = "Spain"),
+          IconSpinnerItem(icon = contextDrawable(R.drawable.china), spinnerText = "China")
         )
       )
       setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
-        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, item.spinnerText, Toast.LENGTH_SHORT).show()
       }
       getSpinnerRecyclerView().layoutManager = GridLayoutManager(baseContext, 2)
       selectItemByIndex(4)

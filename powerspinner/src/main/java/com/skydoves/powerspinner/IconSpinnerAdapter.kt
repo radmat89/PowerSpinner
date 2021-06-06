@@ -87,7 +87,7 @@ class IconSpinnerAdapter(
     }
     val oldIndex = this.index
     this.index = index
-    this.spinnerView.notifyItemSelected(index, item.text)
+    this.spinnerView.notifyItemSelected(index, item.spinnerText)
     this.onSpinnerItemSelectedListener?.onItemSelected(
       oldIndex = oldIndex,
       oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
@@ -98,12 +98,33 @@ class IconSpinnerAdapter(
 
   override fun getItemCount() = this.spinnerItems.size
 
+  override fun getItems() = this.spinnerItems
+
+  override val selectedItem: IconSpinnerItem?
+    get() {
+      return if (index < 0) {
+        null
+      } else {
+        spinnerItems[index]
+      }
+    }
+
+  override fun selectItem(item: IconSpinnerItem): Boolean {
+    val index = spinnerItems.indexOfFirst { it.spinnerValue == item.spinnerValue }
+    return if (index < 0) {
+      false
+    } else {
+      spinnerView.selectItemByIndex(index)
+      true
+    }
+  }
+
   class IconSpinnerViewHolder(private val binding: ItemDefaultPowerSpinnerLibraryBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: IconSpinnerItem, spinnerView: PowerSpinnerView) {
       binding.itemDefaultText.apply {
-        text = item.text
+        text = item.spinnerText
         item.textTypeface?.let { typeface = it } ?: setTypeface(typeface, item.textStyle)
         gravity = item.gravity ?: spinnerView.gravity
         setTextSize(TypedValue.COMPLEX_UNIT_PX, item.textSize ?: spinnerView.textSize)

@@ -55,34 +55,34 @@ class MainActivity : AppCompatActivity() {
     val adapter = IconSpinnerAdapter(binding.spinnerView2)
     binding.spinnerView2.setOnSpinnerItemSelectedListener(
       OnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
-        Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, item.spinnerText, Toast.LENGTH_SHORT).show()
       }
     )
     adapter.setItems(
       arrayListOf(
         IconSpinnerItem(
           iconRes = R.drawable.ic_dashboard_white_24dp,
-          text = "Item0"
+          spinnerText = "Item0"
         ),
         IconSpinnerItem(
           iconRes = R.drawable.ic_dashboard_white_24dp,
-          text = "Item1"
+          spinnerText = "Item1"
         ),
         IconSpinnerItem(
           icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          text = "Item2"
+          spinnerText = "Item2"
         ),
         IconSpinnerItem(
           icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          text = "Item3"
+          spinnerText = "Item3"
         ),
         IconSpinnerItem(
           icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          text = "Item4"
+          spinnerText = "Item4"
         ),
         IconSpinnerItem(
           icon = ContextCompat.getDrawable(this, R.drawable.ic_dashboard_white_24dp),
-          text = "Item5"
+          spinnerText = "Item5"
         )
       )
     )

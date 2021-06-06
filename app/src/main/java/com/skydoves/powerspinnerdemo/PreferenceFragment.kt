@@ -39,20 +39,20 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         setSpinnerAdapter(IconSpinnerAdapter(this))
         setItems(
           arrayListOf(
-            IconSpinnerItem(icon = contextDrawable(R.drawable.unitedstates), text = "USA"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.unitedkingdom), text = "UK"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.france), text = "France"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.canada), text = "Canada"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.southkorea), text = "South Korea"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.germany), text = "Germany"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.spain), text = "Spain"),
-            IconSpinnerItem(icon = contextDrawable(R.drawable.china), text = "China")
+            IconSpinnerItem(icon = contextDrawable(R.drawable.unitedstates), spinnerText = "USA"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.unitedkingdom), spinnerText = "UK"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.france), spinnerText = "France"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.canada), spinnerText = "Canada"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.southkorea), spinnerText = "South Korea"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.germany), spinnerText = "Germany"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.spain), spinnerText = "Spain"),
+            IconSpinnerItem(icon = contextDrawable(R.drawable.china), spinnerText = "China")
           )
         )
         getSpinnerRecyclerView().layoutManager = GridLayoutManager(requireContext(), 2)
       }
       it.setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
-        Toast.makeText(requireContext(), item.text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), item.spinnerText, Toast.LENGTH_SHORT).show()
       }
     }
   }

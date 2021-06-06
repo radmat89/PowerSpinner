@@ -1,19 +1,3 @@
-/*
- * Designed and developed by 2019 skydoves (Jaewoong Eum)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.skydoves.powerspinner
 
 import android.util.TypedValue
@@ -22,17 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.powerspinner.databinding.ItemDefaultPowerSpinnerLibraryBinding
 
-/** DefaultSpinnerAdapter is a default adapter composed of string items. */
-class DefaultSpinnerAdapter(
+/** CustomSpinnerAdapter is a copy of DefaultSpinnerAdapter */
+class CustomSpinnerAdapter(
   powerSpinnerView: PowerSpinnerView
-) : RecyclerView.Adapter<DefaultSpinnerAdapter.DefaultSpinnerViewHolder>(),
-  PowerSpinnerInterface<CharSequence> {
+) : RecyclerView.Adapter<CustomSpinnerAdapter.DefaultSpinnerViewHolder>(),
+  PowerSpinnerInterface<CustomSpinnerItemInterface> {
 
   override var index: Int = powerSpinnerView.selectedIndex
   override val spinnerView: PowerSpinnerView = powerSpinnerView
-  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<CharSequence>? = null
+  override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<CustomSpinnerItemInterface>? = null
 
-  private val spinnerItems: MutableList<CharSequence> = arrayListOf()
+  private val spinnerItems: MutableList<CustomSpinnerItemInterface> = arrayListOf()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DefaultSpinnerViewHolder {
     val binding =
@@ -50,9 +34,9 @@ class DefaultSpinnerAdapter(
   }
 
   override fun onBindViewHolder(holder: DefaultSpinnerViewHolder, position: Int) =
-    holder.bind(spinnerItems[position], spinnerView)
+    holder.bind(spinnerItems[position].spinnerText, spinnerView)
 
-  override fun setItems(itemList: List<CharSequence>) {
+  override fun setItems(itemList: List<CustomSpinnerItemInterface>) {
     this.spinnerItems.clear()
     this.spinnerItems.addAll(itemList)
     notifyDataSetChanged()
@@ -62,7 +46,7 @@ class DefaultSpinnerAdapter(
     if (index == NO_SELECTED_INDEX) return
     val oldIndex = this.index
     this.index = index
-    this.spinnerView.notifyItemSelected(index, spinnerItems[index])
+    this.spinnerView.notifyItemSelected(index, spinnerItems[index].spinnerText)
     this.onSpinnerItemSelectedListener?.onItemSelected(
       oldIndex = oldIndex,
       oldItem = oldIndex.takeIf { it != NO_SELECTED_INDEX }?.let { spinnerItems[oldIndex] },
@@ -75,23 +59,23 @@ class DefaultSpinnerAdapter(
 
   override fun getItems() = this.spinnerItems
 
-  override val selectedItem: CharSequence?
-      get() {
-          return if (index < 0) {
-              null
-          } else {
-              spinnerItems[index]
-          }
-      }
-
-  override fun selectItem(item: CharSequence): Boolean {
-      val index = spinnerItems.indexOfFirst { it == item }
+  override val selectedItem: CustomSpinnerItemInterface?
+    get() {
       return if (index < 0) {
-          false
+        null
       } else {
-          spinnerView.selectItemByIndex(index)
-          true
+        spinnerItems[index]
       }
+    }
+
+  override fun selectItem(item: CustomSpinnerItemInterface): Boolean {
+    val index = spinnerItems.indexOfFirst { it == item }
+    return if (index < 0) {
+      false
+    } else {
+      spinnerView.selectItemByIndex(index)
+      true
+    }
   }
 
   class DefaultSpinnerViewHolder(private val binding: ItemDefaultPowerSpinnerLibraryBinding) :

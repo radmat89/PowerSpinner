@@ -23,4 +23,8 @@ interface PowerSpinnerInterface<T> {
   fun notifyItemSelected(index: Int)
   fun setItems(itemList: List<T>)
   fun getItemCount(): Int
+
+  fun getItems(): List<T>
+  val selectedItem: T?
+  fun selectItem(item: T): Boolean
 }
